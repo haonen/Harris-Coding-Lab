@@ -86,6 +86,7 @@ Read the fips.csv dataset into R (this file is attached to this assignment on Ca
 “Federal Information Processing Standards” and is a common set of codes for United States counties provided
 by the US Census Bureau. You can use the glimpse() function to look at this data, which contains county
 and state names that are missing from FARS data.
+
 ```ruby
 fips <- read_csv('D:/UChicago/coding longlive!/R/fips.csv')
 glimpse(fips)
@@ -133,7 +134,7 @@ the NA state value.
 - Rewrite the prior six steps using the same functions, but now only using one assignment <- with dplyr’s
 chain operator: %>%
 
-- notes: read carefully about the help of filter(), the observations will be kept if them match the conditions in the code. And I don't know why the data frame contains a 'NA' coloum after change from length to width, so I delete it by subset().            
+- notes: read carefully about the help of filter(), the observations will be kept if them match the conditions in the code. And becasue I didn't delete the NA in original data frame, so the wide one contains a 'NA' column. I delete it by subset().            
 
 ```ruby
 #data analysis#
@@ -150,7 +151,7 @@ agg_wide <- rename(agg_wide,Year2014='2014',Year2015='2015')
 agg_wide <- agg_wide%>%mutate(Diff_Percent = (Year2015-Year2014)/Year2014)
 agg_wide <- agg_wide%>%arrange(Diff_Percent)
 agg_wide <- filter(agg_wide, Diff_Percent>0.15,StateName != 'NA')
-##delete the 'NA' coloum##
+##delete the 'NA' column##
 agg_wide <- agg_wide%>%subset(select=c("StateName","Year2014","Year2015","Diff_Percent"))
 
 glimpse(agg_wide)
@@ -160,6 +161,8 @@ glimpse(agg_wide)
 Please recreate the graph below to the best of your ability. You will need to use the ggplot2 and scales
 package to do so, with the ggrepel package being helpflu for exact replication. Note the y-axis is used a log
 scale with a base of 10.
+
+![ggplot example.jpg](D:/UChicago/coding longlive!/R/assignment 1/ggplot example.jpg)
 
 - notes: in order to make graphing easier, I change the data frame from width back to length by gather(). Also, for the convience of concision of ggplot2 commands, I use regular expression to change the name of Year2014 and Year2015(but you can also use rename() to make it easier). gsub is used for replacing text here. 
 
@@ -174,7 +177,7 @@ agg_length$Year <- gsub('[Year]',"",agg_length$Year)
 graph <- ggplot(agg_length, aes(x = Year, y = Fatals, color = StateName, group = StateName)) + geom_line()+#basic plots#
   labs(y="Traffic Fatalitics(Log Base 10)", title="Traffic Fatalities Rise in Many States", subtitle="13 States Saw a 15% or Greater Rise in Traffic Fatalities",caption  ="DoT  FARS  Data")+##ylabs+title+subtitle+caption#
   scale_y_log10(breaks=c(10^2,10^2.5,10^3,10^3.5),labels=expression(10^{2},10^{2.5},10^{3},10^{3.5}))+annotation_logticks(base=10,sides="l",scaled=TRUE,short = unit(0.1, "cm"), mid = unit(0.2, "cm"), long = unit(0.3, "cm"),color="black")+#modification fo y-axis#
-  theme_classic()+#basic patterns of plots#
+  theme_classic()+#basic patterns of this plot#
   theme(legend.position="none",axis.line.y =element_blank(),axis.line.x = element_blank())+#no legend, no x-axis and y-axis line#
   geom_text_repel(label = ifelse(agg_length$Year==2014,agg_length$StateName,""),nudge_x  =-0.25,direction  ="y",hjust  =0)#label for StateName only once#
   ```
