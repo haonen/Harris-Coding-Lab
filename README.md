@@ -162,8 +162,6 @@ Please recreate the graph below to the best of your ability. You will need to us
 package to do so, with the ggrepel package being helpflu for exact replication. Note the y-axis is used a log
 scale with a base of 10.
 
-![ggplot example.jpg](D:/UChicago/coding longlive!/R/assignment 1/ggplot example.jpg)
-
 - notes: in order to make graphing easier, I change the data frame from width back to length by gather(). Also, for the convience of concision of ggplot2 commands, I use regular expression to change the name of Year2014 and Year2015(but you can also use rename() to make it easier). gsub is used for replacing text here. 
 
 ```ruby
