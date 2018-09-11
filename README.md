@@ -52,7 +52,7 @@ table(is.na(acc2014$TWAY_ID2))
 Next, run the dim() function (which prints **number of rows then columns**) on both tibbles and notice that
 the number of columns differs.
 ```ruby
-dim(acc2014)
+dim(acc2014)#标记对象的维度#
 dim(acc2015)
 ```
 
