@@ -11,7 +11,7 @@ Most importantly for our purposes, they are (1) of class **data.frame**, which i
 a tabular dataset and (2) of class **tbl**, pronounced tibble. Tibbles inherit the dataframe class and can be
 considered a modern version of the dataframe with convenient defaults. 
 
-- notes: read_csv() is different from read.csv(). The former can keep all the zeros in data frame,  for example, value"001" will be kept in read_csv() while being presented as "1" in read.csv(). So, it is better to use read_csv().
+- notes: read_csv() is different from read.csv(). The former can keep all the zeros in data frame, but the latter will change the characters in data frame into numeric type automatically. For example, value"001" will be kept in read_csv() while being presented as "1" in read.csv(). So, it is better to use read_csv().
 
 ```ruby
 #Assignment1:DoT FARS data#
@@ -60,7 +60,7 @@ Use the colnames() function and the %in% operator, you can identify which column
 by not the other. Indexing with square brackets can be useful here as well. Write a comment identifying
 these columns (there are four in total) and which dataset(s) they are missing from.
 
-- notes: %in% is another operation which can help you check whether one element is in a set of elements. For example, x %in% y means to check whether x is in y. 
+- notes: %in% is another operatior which can help you check whether one element is in a set of elements. For example, x %in% y means to check whether x is in y. 
 
 ```ruby
 colnames(file2015)%in%colnames(file2014)
