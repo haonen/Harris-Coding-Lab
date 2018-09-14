@@ -60,11 +60,11 @@ Use the colnames() function and the %in% operator, you can identify which column
 by not the other. Indexing with square brackets can be useful here as well. Write a comment identifying
 these columns (there are four in total) and which dataset(s) they are missing from.
 
-- notes: %in% is another operatior which can help you check whether one element is in a set of elements. For example, x %in% y means to check whether x is in y. 
+- notes: %in% is another operatior which can help you check whether one element is in a set of elements. For example, x %in% y means to check whether x is in y. [] refers to a subset, so if you type a [] after a data frame, it means that you want R to return the elements that  meet the condition in [], and if you want the opposite results, just type"==FALSE". 
 
 ```ruby
-colnames(file2015)%in%colnames(file2014)
-colnames(file2014)%in%colnames(file2015)
+colnames(file2014)[colnames(file2014)%in%colnames(file2015)==FALSE]
+colnames(file2015)[colnames(file2015)%in%colnames(file2014)==FALSE]
 colnames(file2014)
 colnames(file2015)
 ##IN file2014:ROAD_FNC;IN file2015:RUR_URB, FUNC_SYS;RD_OWNER)
