@@ -65,6 +65,9 @@ these columns (there are four in total) and which dataset(s) they are missing fr
 ```ruby
 colnames(file2014)[colnames(file2014)%in%colnames(file2015)==FALSE]
 colnames(file2015)[colnames(file2015)%in%colnames(file2014)==FALSE]
+#or you can write it as#
+colnames(file2014)[!colnames(file2014)%in%colnames(file2015)]
+colnames(file2015)[!colnames(file2015)%in%colnames(file2014)]
 colnames(file2014)
 colnames(file2015)
 ##IN file2014:ROAD_FNC;IN file2015:RUR_URB, FUNC_SYS;RD_OWNER)
