@@ -63,13 +63,13 @@ these columns (there are four in total) and which dataset(s) they are missing fr
 - notes: %in% is another operatior which can help you check whether one element is in a set of elements. For example, x %in% y means to check whether x is in y. [] refers to a subset, so if you type a [] after a data frame, it means that you want R to return the elements that  meet the condition in [], and if you want the opposite results, just type"==FALSE". 
 
 ```ruby
-colnames(file2014)[colnames(file2014)%in%colnames(file2015)==FALSE]
-colnames(file2015)[colnames(file2015)%in%colnames(file2014)==FALSE]
+colnames(acc2014)[colnames(acc2014)%in%colnames(acc2015)==FALSE]
+colnames(acc2015)[colnames(acc2015)%in%colnames(acc2014)==FALSE]
 #or you can write it as#
-colnames(file2014)[!colnames(file2014)%in%colnames(file2015)]
-colnames(file2015)[!colnames(file2015)%in%colnames(file2014)]
-colnames(file2014)
-colnames(file2015)
+colnames(acc2014)[!colnames(acc2014)%in%colnames(acc2015)]
+colnames(acc2015)[!colnames(acc2015)%in%colnames(acc2014)]
+colnames(acc2014)
+colnames(acc2015)
 ##IN file2014:ROAD_FNC;IN file2015:RUR_URB, FUNC_SYS;RD_OWNER)
 ```
 
@@ -78,10 +78,10 @@ function to create a frequency table of the RUR_URB variable - why are there ove
 column? Explain in a comment.
 
 ```ruby
-acc<- bind_rows(file2014,file2015)
+acc<- bind_rows(acc2014,acc2015)
 View(acc)
 acc%>%count(RUR_URB)
-#because file2014 dosen't contain this field#
+#because acc2014 dosen't contain this field#
 ```
 
 ## Merging on another data source.
